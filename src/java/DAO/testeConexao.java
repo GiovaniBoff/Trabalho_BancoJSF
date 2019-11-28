@@ -5,6 +5,8 @@
  */
 package DAO;
 import java.sql.*;
+import oracle.jdbc.OracleType;
+import oracle.jdbc.OracleTypes;
 /**
  *
  * @author Giovani
@@ -14,25 +16,31 @@ public class testeConexao {
 
         try(    
             Connection con = ConnectionFactory.getConnection();
-            CallableStatement clst = con.prepareCall(SQL_SCRIPTS.PROCEDURE_insertAeronaveNaFrota.getSql());
+            CallableStatement clst = con.prepareCall(SQL_SCRIPTS.PROCEDURE_selecionaPortoesDisponiveis.getSql());
             //PreparedStatement stmt = con.prepareStatement("select * from aeronave");
         ){
 //            clst.registerOutParameter(1,Types.BOOLEAN);
-            clst.setString(1, "King air");
-            clst.setString(2, "GOL");
+         
+//            clst.registerOutParameter(2,OracleTypes.NUMBER);
+//            clst.setString(1,"TAM");
+            
+            clst.setString(1,"2019/08/16");
+            clst.setString(2, "airbus a319");
+            clst.registerOutParameter(3, OracleTypes.CURSOR);
             clst.execute();
-//            boolean essamerda = clst.getBoolean(1);
             
             //System.out.println(essamerda);
-            //ResultSet rs = stmt.executeQuery();
-//            while(rs.next()){
-//                System.out.println(rs.getString("Modelo"));
-//            
-//            }
+            
+            System.out.println(clst.getObject(3));
+            ResultSet rs = (ResultSet)clst.getObject(3);
+            while(rs.next()){
+                System.out.println(rs.getString("nome"));
+            
+            }
             
             
             
-           //con.close();
+           con.close();
             
         } catch (SQLException e) {
             e.printStackTrace();
