@@ -5,6 +5,8 @@
  */
 package Model;
 
+import DAO.DAO;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -122,6 +124,11 @@ public class Voo {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Voo{" + "idVoo=" + idVoo + ", idAeronave=" + idAeronave + ", idCompanhiaAerea=" + idCompanhiaAerea + ", idPortao=" + idPortao + ", data_chegada=" + data_chegada + ", data_saida=" + data_saida + '}';
     }
     
     

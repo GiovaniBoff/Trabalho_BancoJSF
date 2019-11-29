@@ -4,7 +4,10 @@
  * and open the template in the editor.
  */
 package DAO;
+import Model.*;
 import java.sql.*;
+import java.util.LinkedList;
+import java.util.List;
 import oracle.jdbc.OracleType;
 import oracle.jdbc.OracleTypes;
 /**
@@ -13,37 +16,32 @@ import oracle.jdbc.OracleTypes;
  */
 public class testeConexao {
     public static void main(String[] args) {
-
-        try(    
+            List<Voo> voos = new LinkedList();
+               try(    
             Connection con = ConnectionFactory.getConnection();
-            CallableStatement clst = con.prepareCall(SQL_SCRIPTS.PROCEDURE_selecionaPortoesDisponiveis.getSql());
-            //PreparedStatement stmt = con.prepareStatement("select * from aeronave");
+            CallableStatement clst = con.prepareCall(SQL_SCRIPTS.PROCEDURE_getAllFligths.getSql());
         ){
-//            clst.registerOutParameter(1,Types.BOOLEAN);
-         
-//            clst.registerOutParameter(2,OracleTypes.NUMBER);
-//            clst.setString(1,"TAM");
-            
-            clst.setString(1,"2019/08/16");
-            clst.setString(2, "airbus a319");
-            clst.registerOutParameter(3, OracleTypes.CURSOR);
+            clst.registerOutParameter(1, OracleTypes.CURSOR);
             clst.execute();
+            ResultSet rs = (ResultSet)clst.getObject(1);
             
-            //System.out.println(essamerda);
-            
-            System.out.println(clst.getObject(3));
-            ResultSet rs = (ResultSet)clst.getObject(3);
             while(rs.next()){
-                System.out.println(rs.getString("nome"));
-            
+                voos.add(new Voo(rs.getInt("id_voo"),
+                        rs.getInt("id_aeronave"), 
+                        rs.getInt("id_companhia_aerea"), 
+                        rs.getInt("id_portao"), 
+                        rs.getString("data_chegada"), 
+                        rs.getString("data_chegada")
+                ));
+                
             }
-            
-            
-            
-           con.close();
+                   System.out.println(voos.toString());
             
         } catch (SQLException e) {
             e.printStackTrace();
-        }
+        } 
+
+       
+        
     }
 }

@@ -11,10 +11,22 @@ package DAO;
  */
 public enum SQL_SCRIPTS {
     PROCEDURE_insertAeronaveNaFrota("{call insertAeronaveNaFrota(?,?)}"),
-    PROCEDURE_totalFrotaComp("begin TOTALFROTACOMP(?,?); end;"),
+    //PROCEDURE_totalFrotaComp("begin TOTALFROTACOMP(?,?); end;"),
     FUNCTION_isPortaoValid("begin ? := ISPORTAOVALID(?,?); end;"),
-    PROCEDURE_pegaPortoesDisponiveis("declare begin PEGAPORTOESDISPONIVEIS(TO_DATE(?,'YYYY/MM/DD'),?,?); end;"),
-    PROCEDURE_selecionaPortoesDisponiveis("begin SELECIONAPORTOESDISPONIVEIS(TO_DATE(?,'YYYY/MM/DD'),?,?); end;");
+    //PROCEDURE_pegaPortoesDisponiveis("declare begin PEGAPORTOESDISPONIVEIS(TO_DATE(?,'YYYY/MM/DD'),?,?); end;"),
+    PROCEDURE_selecionaPortoesDisponiveis("begin SELECIONAPORTOESDISPONIVEIS(TO_DATE(?,'YYYY/MM/DD'),?,?); end;"),
+    PROCEDURE_getAllFligths("begin GET_ALL_FLIGTHS(?); end;"),
+    
+    
+    
+    SELECT_PORTAO("select * from portao"),
+    SELECT_VOO("select * from voo"),
+    SELECT_FROTA("select * from frota"),
+    SELECT_COMPAEREA("select * from companhia_aerea"),
+    SELECT_CATEGORIA("select * from categoria"),
+    SELECT_AERONAVE("select * from aeronave where modelo = ''");
+    
+    
     
     private final String sql;
     SQL_SCRIPTS(String sql){

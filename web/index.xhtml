@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Index</title>
+    </h:head>
+    <h:body>
+        <!--idVoo=1, idAeronave=2, idCompanhiaAerea=1, idPortao=2, data_chegada=2019-08-15 08:30:25, data_saida=2019-08-15 08:30:25-->
+        <h:form> 
+            <h:dataTable value="#{aeroportoBean.todosVoos}" var="voo"
+                         class="striped">
+                <h:column>
+                    <f:facet name="header">id voo</f:facet>
+                        #{voo.idVoo}
+                </h:column>
+                <h:column>
+                    <f:facet name="header">Data</f:facet>
+                        #{voo.data_chegada}
+                </h:column>
+<!--                <h:column>
+                    <h:commandButton value="Excluir" class = "btn btn-danger" action="#{usuarioBean.excluir(user)}"/>
+                </h:column>
+                <h:column>
+                    <h:commandButton value="Editar" class = "btn btn-success" action="#{usuarioBean.editar(user)}"/>
+                </h:column>-->
+            </h:dataTable>
+        </h:form> 
+    </h:body>
+</html>
+

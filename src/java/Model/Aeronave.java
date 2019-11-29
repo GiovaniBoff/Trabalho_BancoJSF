@@ -12,11 +12,35 @@ import java.util.Objects;
  * @author Giovani
  */
 public class Aeronave {
-    public int idAeronave;
-    public int idCategoria;
-    public String modelo;
+    private int idAeronave;
+    private int idCategoria;
+    private String modelo;
 
     public Aeronave() {
+    }
+
+    public int getIdAeronave() {
+        return idAeronave;
+    }
+
+    public void setIdAeronave(int idAeronave) {
+        this.idAeronave = idAeronave;
+    }
+
+    public int getIdCategoria() {
+        return idCategoria;
+    }
+
+    public void setIdCategoria(int idCategoria) {
+        this.idCategoria = idCategoria;
+    }
+
+    public String getModelo() {
+        return modelo;
+    }
+
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
     }
 
     public Aeronave(int idAeronave, int idCategoria, String modelo) {
