@@ -26,7 +26,11 @@ public class VooBean {
             this.vooList = voo.listAllVoos();
         }
     }
-
+    
+    public String redirectLista(){
+        return "listaVoo";
+    }
+    
     public Voo getVoo() {
         return voo;
     }
