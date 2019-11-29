@@ -16,6 +16,7 @@ public enum SQL_SCRIPTS {
     //PROCEDURE_pegaPortoesDisponiveis("declare begin PEGAPORTOESDISPONIVEIS(TO_DATE(?,'YYYY/MM/DD'),?,?); end;"),
     PROCEDURE_selecionaPortoesDisponiveis("begin SELECIONAPORTOESDISPONIVEIS(TO_DATE(?,'YYYY/MM/DD'),?,?); end;"),
     PROCEDURE_getAllFligths("begin GET_ALL_FLIGTHS(?); end;"),
+    PROCEDURE_checkFilghtAvaliable("begin checkFilghtAvaliable(TO_DATE(?,'YYYY/MM/DD HH:MI:SS'), ?); end;"),
     
     
     

@@ -7,8 +7,11 @@ package DAO;
 import Model.*;
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.LinkedList;
 import java.util.List;
 import oracle.jdbc.OracleTypes;
@@ -71,14 +74,50 @@ public class DAO {
                         rs.getString("data_chegada")
                 ));
             }
-            System.out.println(voos.toString());
+            System.out.println("Recebido os voos " + voos.toString());
             return voos;
             
         } catch (SQLException e) {
             e.printStackTrace();
         }    
         
-        return null;
+        return null;    
+    }
     
+        public List<Voo> listAllAvailableFlights(){
+        List<Voo> voos = new LinkedList();
+        try(    
+            Connection con = ConnectionFactory.getConnection();
+            CallableStatement clst = con.prepareCall(SQL_SCRIPTS.PROCEDURE_checkFilghtAvaliable.getSql());
+        ){
+            
+            LocalDate localDate = LocalDate.now();//For reference
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("YYYY/MM/DD HH:MI:SS");
+            String formattedString = localDate.format(formatter);
+            
+            System.out.println("\n\n Data formatada " + formattedString + "\n\n");
+            
+            clst.setString(1, formattedString);
+            clst.registerOutParameter(2, OracleTypes.CURSOR);
+            clst.execute();
+            ResultSet rs = (ResultSet)clst.getObject(1);
+            
+            while(rs.next()){
+                  voos.add(new Voo(rs.getInt("id_voo"),
+                        rs.getInt("id_aeronave"), 
+                        rs.getInt("id_companhia_aerea"), 
+                        rs.getInt("id_portao"), 
+                        rs.getString("data_chegada"), 
+                        rs.getString("data_chegada")
+                ));
+            }
+            System.out.println("Recebido os voos FILTRADOS " + voos.toString());
+            return voos;
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }    
+        
+        return null;    
     }
 }

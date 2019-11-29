@@ -9,7 +9,7 @@
     <h:body>
         <!--idVoo=1, idAeronave=2, idCompanhiaAerea=1, idPortao=2, data_chegada=2019-08-15 08:30:25, data_saida=2019-08-15 08:30:25-->
         <h:form> 
-            <h:dataTable value="#{aeroportoBean.todosVoos}" var="voo"
+            <h:dataTable value="#{vooBean.vooList}" var="voo"
                          class="striped">
                 <h:column>
                     <f:facet name="header">id voo</f:facet>

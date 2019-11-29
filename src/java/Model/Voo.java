@@ -131,6 +131,9 @@ public class Voo {
         return "Voo{" + "idVoo=" + idVoo + ", idAeronave=" + idAeronave + ", idCompanhiaAerea=" + idCompanhiaAerea + ", idPortao=" + idPortao + ", data_chegada=" + data_chegada + ", data_saida=" + data_saida + '}';
     }
     
+    public List<Voo> listAllVoos() { return new DAO().listAllVoos();}
+    
+    public List<Voo> listAllAvailableFlights() { return new DAO().listAllAvailableFlights();}
     
     
 }
